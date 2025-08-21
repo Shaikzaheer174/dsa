@@ -88,3 +88,129 @@ function countNegativeNumbers(arr) {
 }
 const result = countNegativeNumbers(negArray);
 console.log("Result:", result); // Output: 2
+
+// write a function that returns second largest number in an array.
+const arrayToFindSecondLargest = [4, 9, 0, 2, 8, 7, 1];
+
+function secondLargest(arr) {
+  if (arr.length < 2) {
+    return null;
+  }
+  let firstLargest = -Infinity;
+  let secondLargest = -Infinity;
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] > firstLargest) {
+      secondLargest = firstLargest;
+      firstLargest = arr[i];
+    } else if (arr[i] > secondLargest && arr[i] !== firstLargest) {
+      secondLargest = arr[i];
+    }
+  }
+  return secondLargest;
+}
+
+const secondLargestNum = secondLargest(arrayToFindSecondLargest);
+console.log(secondLargestNum);
+
+// write a function that returns second smallest number in an array.
+const arrayToFindSecondSmallest = [4, 9, 0, 2, 8, 7, 1];
+
+function secondSmallestNum(arr) {
+  if (arr.length < 2) {
+    return null;
+  }
+  let firstSmallest = Infinity;
+  let secondSmallest = Infinity;
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] < firstSmallest) {
+      secondSmallest = firstSmallest;
+      firstSmallest = arr[i];
+    } else if (arr[i] < secondSmallest) {
+      secondSmallest = arr[i];
+    }
+  }
+  return secondSmallest;
+}
+
+const secondSmallest = secondSmallestNum(arrayToFindSecondSmallest);
+console.log(secondSmallest); //1
+
+// more clear and fixed version:
+// In the else if block, you should make sure the value isn’t equal to firstSmallest, otherwise duplicates can cause wrong results.
+const arr = [1, 1, 2];
+const arr1 = [2];
+// Your code would set:
+// firstSmallest = 1
+// secondSmallest = 1 (duplicate, not the actual second smallest)
+// Output → 1 (incorrect, expected 2)
+function secondSmallNum(arr) {
+  if (arr.length < 2) {
+    return null;
+  }
+  let firstSmallest = Infinity;
+  let secondSmallest = Infinity;
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] < firstSmallest) {
+      secondSmallest = firstSmallest;
+      firstSmallest = arr[i];
+    } else if (arr[i] < secondSmallest && arr[i] !== firstSmallest) {
+      secondSmallest = arr[i];
+    }
+  }
+
+  return secondSmallest === Infinity ? null : secondSmallest;
+}
+
+const secondSmall = secondSmallNum(arr1);
+console.log(secondSmall); //null
+
+const secondSmallestNumber = secondSmallNum(arr);
+console.log(secondSmallestNumber); //2
+
+
+// patterns:
+for (let i = 0; i < 4; i++) {
+  let row = "";
+  for (let j = 0; j < 4; j++) {
+    row = row + "*";
+  }
+  console.log(row);
+}
+/*
+output:
+ ****
+ ****
+ ****
+ ****
+ */
+
+//
+for (let i = 0; i < 5; i++) {
+  let row = "";
+  for (let j = 0; j < i + 1; j++) {
+    row = row + (j + 1);
+  }
+  console.log(row);
+}
+
+/**
+1
+12
+123
+1234
+12345 
+*/
+
+n = 5;
+for (let i = 0; i < n; i++) {
+  let row = "";
+  for (let j = 0; j < n - i; j++) {
+    row = row + (j + 1);
+  }
+  console.log(row);
+}
+// 12345
+// 1234
+// 123
+// 12
+// 1
